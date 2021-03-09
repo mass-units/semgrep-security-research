@@ -1,1 +1,1 @@
-# semgrep-application-security-research
+# semgrep-security-research
