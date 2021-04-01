@@ -1,0 +1,35 @@
+rules:
+- id: sql.injection
+  message: |
+    SQL Injection with unique executions
+  metadata:
+    owasp: "A1: Injection"
+  severity: ERROR
+  patterns:
+  - pattern-either:
+    - pattern: | #executeQuery
+        $RETURN $METHOD(...,String $VAR, ...) {
+          ...
+          $SQL = $X + $VAR + $Y;
+          ...
+          $W.executeQuery($SQL, ...);
+          ...
+        }
+    - pattern: | #execute
+        $RETURN $METHOD(...,String $VAR, ...) {
+          ...
+          $SQL = $X + $VAR + $Y;
+          ...
+          $W.execute($SQL, ...);
+          ...
+        }
+    - pattern: | #prepareStatement
+        $RETURN $METHOD(...,String $VAR, ...) {
+          ...
+          $SQL = $X + $VAR + $Y;
+          ...
+          $W.prepareStatement($SQL, ...);
+          ...
+        }
+  languages:
+  - java

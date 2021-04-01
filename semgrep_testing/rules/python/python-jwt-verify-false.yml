@@ -1,0 +1,25 @@
+rules:
+- id: python-jwt-verify-false
+  message: |
+        JWT Library set verify=False. Possible Auth Bypass vuln.
+  patterns:
+  - pattern-inside: |
+        def $FUNC(...):
+          ...  
+  - pattern-either:  
+        - pattern: jwt.decode(..., verify=False, ...)
+  severity: ERROR
+  languages:
+  - python
+
+- id: python-jwt-algorithm-arg
+  message: |
+        JWT decode does not specifiy algorithm
+  patterns:
+  - pattern-inside: |
+        def $FUNC(...):
+          ...  
+  - pattern-not:  jwt.decode(..., algorithms=[...], ...)
+  severity: ERROR
+  languages:
+  - python

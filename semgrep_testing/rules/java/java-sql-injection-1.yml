@@ -1,0 +1,11 @@
+rules:
+- id: sql.injection
+  message: |
+    SQL Injection
+  metadata:
+    owasp: "A1: Injection"
+  severity: ERROR
+  patterns:
+    - pattern: $SQL = $X + $Y + $Z;
+  languages:
+  - java

@@ -1,0 +1,20 @@
+rules:
+- id: go-for-loop
+  pattern: |
+    for ... {
+      ...
+      for ... {
+        ...
+
+        for ... {
+          ...
+        }
+        ...
+      }
+      ...
+    }
+  message: |
+    Semgrep found it
+  severity: WARNING
+  mode: search
+  languages: ["generic"]
