@@ -1,0 +1,7 @@
+rules:
+  - id: writestring
+    patterns:
+      - pattern: io.WriteString($W, string($B))
+    message: "use $W.Write($B)"
+    languages: [go]
+    serverity: ERROR
