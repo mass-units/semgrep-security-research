@@ -1,6 +1,6 @@
 /*
-*evaluate with multiple unique conditionals to demonstrate the need for multiple rules to search for 
-*similar things - pattern operators have to be used in conjunction which allows us to eliminate false positives 
+*evaluate with multiple unique conditionals to demonstrate the need for multiple patterns to search for 
+*similar things - pattern operators have to be used in conjunction but this allows us to eliminate false positives 
 */
 //fastest secure coding lesson ever:
     //in order to cover some cases your ifs need an else for sanitization
