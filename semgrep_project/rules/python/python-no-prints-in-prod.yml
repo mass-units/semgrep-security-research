@@ -1,0 +1,5 @@
+rules:
+- id: python-no-prints-in-prod
+  pattern: print(...)
+  message: Use logging.debug() instead of print()
+  severity: INFO
