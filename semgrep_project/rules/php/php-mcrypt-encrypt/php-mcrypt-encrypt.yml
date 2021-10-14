@@ -1,0 +1,8 @@
+rules:
+- id: php-mcrypt-encrypt
+  pattern: |
+    mcrypt_encrypt
+  message: |
+    PHP's mcrypt_encrypt has been deprecated since PHP 7.1
+  languages: [js]
+  severity: ERROR

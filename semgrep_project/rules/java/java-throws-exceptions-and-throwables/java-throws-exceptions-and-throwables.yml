@@ -1,0 +1,10 @@
+rules:
+- id: my_pattern_id
+  patterns:
+    - pattern-either:
+      - pattern: void $X() throws RuntimeException {...}
+      - pattern: void $X() throws Exception {...}
+      - pattern: void $X() throws Throwable {...}
+  message: Semgrep found a match
+  languages: [java]
+  severity: WARNING

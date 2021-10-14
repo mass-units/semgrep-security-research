@@ -1,0 +1,8 @@
+rules:
+- id: javascript-session-storage
+  pattern: |
+    sessionStorage
+  message: |
+      Just a warning - make sure that sensitive data is not stored locally on the client side because it is not encrypted and other scripts could access the data 
+  languages: [js]
+  severity: WARNING

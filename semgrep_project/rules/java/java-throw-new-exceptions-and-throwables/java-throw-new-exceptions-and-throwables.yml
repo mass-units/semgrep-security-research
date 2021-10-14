@@ -1,0 +1,10 @@
+rules:
+- id: java-throw-new-exceptions-and-throwables
+  patterns:
+    - pattern-either:
+      - pattern: throw new RuntimeException("...");
+      - pattern: throw new Exception("...");
+      - pattern: throw new Throwable("...");
+  message: Semgrep found a match
+  languages: [java]
+  severity: WARNING

@@ -1,0 +1,10 @@
+rules:
+- id: javascript-cipheriv-insecure-algorithms
+  patterns:
+    - pattern-either:
+      - pattern: crypto.createCipheriv("BF", ...)
+      - pattern: crypto.createCipheriv("RC4", ...)
+      - pattern: crypto.createCipheriv("RC2", ...)
+  message: These algorithms are insecure because they vulnerable to cryptanalysis and or have an inferior block size. Please consider using stronger algorithms.
+  languages: [js]
+  severity: WARNING

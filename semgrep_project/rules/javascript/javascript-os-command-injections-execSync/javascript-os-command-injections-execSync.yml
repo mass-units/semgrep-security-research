@@ -1,0 +1,9 @@
+rules:
+- id: javascript-os-command-injections-execSync
+  pattern: |
+      const $A = '$B' + $C;
+      const $D = $E.execSync($A);
+  message: |
+      Use execFileSync instead to put a defined command seperately and user-controlled inputs in an array. 
+  languages: [js]
+  severity: ERROR

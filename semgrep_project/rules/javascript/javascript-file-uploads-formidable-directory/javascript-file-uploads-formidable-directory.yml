@@ -1,0 +1,11 @@
+rules:
+- id: javascript-file-uploads-formidable-directory
+  pattern: |
+    const $A = require('formidable');
+    ...
+    const $B = new $A();
+    $B.uploadDir = "";
+  message: |
+      File uploads using formidable should have the upload directory defined.
+  languages: [js]
+  severity: ERROR

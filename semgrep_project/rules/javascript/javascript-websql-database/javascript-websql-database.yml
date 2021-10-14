@@ -1,0 +1,8 @@
+rules:
+- id: javascript-websql-database
+  pattern: |
+    window.openDatabase
+  message: |
+      Web SQL is never meant to be used and isn't even supported by some major browsers
+  languages: [js]
+  severity: WARNING

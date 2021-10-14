@@ -1,0 +1,8 @@
+rules:
+- id: javascript-cross-origins-postmessage
+  pattern: |
+    $A.contentWindow.postMessage("...", "*")
+  message: |
+    Browsers allow messages to be exchanged across origins using postMessage, but the identity's reciever needs to be verified (ie * should not be used!) 
+  languages: [js]
+  severity: ERROR
