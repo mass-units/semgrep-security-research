@@ -1,9 +1,0 @@
-rules:
-- id: typescript-bypass-security-trust-html
-  message: |
-    Bypass security trust html used
-  severity: ERROR
-  patterns:
-    - pattern: this.searchValue = this.sanitizer.bypassSecurityTrustHtml($X)
-  languages:
-  - typescript

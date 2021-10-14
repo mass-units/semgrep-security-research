@@ -1,0 +1,12 @@
+rules:
+- id: javascript-file-uploads-formidable-directory
+  pattern: |
+    const $A = require('formidable');
+    ...
+    const $B = new $A();
+    ...
+    $B.keepExtensions = true;
+  message: |
+      File uploads using formidable should have their extension-keeping option set to false. 
+  languages: [js]
+  severity: ERROR
