@@ -1,0 +1,18 @@
+rules:
+- id: java-okhttp-tls
+  patterns:
+    - pattern: ConnectionSpec $A = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).tlsVersions(...).build();
+    - pattern-not: |
+        ConnectionSpec $A = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).tlsVersions(TlsVersion.TLS_1_2).build();
+    - pattern-not: |
+        ConnectionSpec $A = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).tlsVersions(TlsVersion.TLS_1_3).build();
+    - pattern-not: |
+        ConnectionSpec $A = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).tlsVersions(TlsVersion.DTLS_1_2).build();
+    - pattern-not: |
+        ConnectionSpec $A = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).tlsVersions(TlsVersion.DTLS_1_3).build();
+  message: Outdated and insecure TLS using okhttp library. Use at least TLS or DTLS 1.2. 
+  metadata:
+    references:
+      - https://rules.sonarsource.com/java/type/Vulnerability/RSPEC-4423
+  languages: [java]
+  severity: ERROR

@@ -1,0 +1,48 @@
+rules:
+- id: java-normalize-before-validate
+  patterns:
+    - pattern-either:
+      - pattern: |
+          String $S = ...;
+          Pattern $P = Pattern.compile("...");
+          Matcher $M = $P.matcher($S);
+          if(matcher.lookingAt())
+          {
+            ...
+          }
+          ...
+          $S = Normalizer.normalize($S, ...);
+      - pattern: |
+          String $S = ...;
+          Pattern $P = Pattern.compile("...");
+          Matcher $M = $P.matcher($S);
+          if(matcher.find(...))
+          {
+            ...
+          }
+          ...
+          $S = Normalizer.normalize($S, ...);
+      - pattern: |
+          String $S = ...;
+          Pattern $P = Pattern.compile("...");
+          Matcher $M = $P.matcher($S);
+          if(matcher.matches())
+          {
+            ...
+          }
+          ...
+          $S = Normalizer.normalize($S, ...);
+      - pattern: |
+          String $S = ...;
+          if($S.matches($REGEX))
+          {
+            ...
+          }
+          ...
+          $S = Normalizer.normalize($S, ...);
+  message: Normalizer.normalize before validating strings in these methods.
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/IDS01-J.+Normalize+strings+before+validating+them
+  languages: [java]
+  severity: ERROR

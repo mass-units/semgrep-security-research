@@ -1,0 +1,1 @@
+sessionStorage.setItem("sessionId", sessionId); // Noncompliant

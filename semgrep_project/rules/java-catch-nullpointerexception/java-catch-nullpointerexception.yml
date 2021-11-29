@@ -1,6 +1,9 @@
 rules:
 - id: java-catch-nullpointerexception
   pattern: catch (NullPointerException $X) {...}
-  message: Semgrep found a match
+  message: NullPointerException must not be catched. Indicates a further problem that needs to be fixed - a returned null. 
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/ERR08-J.+Do+not+catch+NullPointerException+or+any+of+its+ancestors
   languages: [java]
   severity: WARNING

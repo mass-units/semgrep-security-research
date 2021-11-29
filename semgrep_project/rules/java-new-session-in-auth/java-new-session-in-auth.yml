@@ -1,0 +1,9 @@
+rules:
+- id: java-new-session-in-auth
+  pattern: $A.sessionManagement().sessionFixation().none();
+  message: Session fixation protection disabled, it should be enabled for auth with newSession or migrateSession
+  metadata:
+    references:
+      - https://rules.sonarsource.com/java/type/Vulnerability/RSPEC-5876
+  languages: [java]
+  severity: WARNING

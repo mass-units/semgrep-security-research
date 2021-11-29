@@ -1,0 +1,9 @@
+rules:
+- id: java-get-requested-session-id
+  pattern: $R.getRequestedSessionId();
+  message: $R.getRequestedSessionId should not be used due to how easy it is for the user to change the value, thus the data can not be trusted.
+  metadata:
+    references:
+      - https://rules.sonarsource.com/java/type/Vulnerability/RSPEC-2254
+  languages: [java]
+  severity: WARNING

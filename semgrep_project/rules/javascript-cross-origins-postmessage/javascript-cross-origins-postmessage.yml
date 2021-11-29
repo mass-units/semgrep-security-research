@@ -4,5 +4,8 @@ rules:
     $A.contentWindow.postMessage("...", "*")
   message: |
     Browsers allow messages to be exchanged across origins using postMessage, but the identity's reciever needs to be verified (ie * should not be used!) 
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-2819
   languages: [js]
   severity: ERROR

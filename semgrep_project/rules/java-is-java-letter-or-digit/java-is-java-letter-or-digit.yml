@@ -1,0 +1,10 @@
+rules:
+- id: java-is-letter-or-digit
+  pattern: $A.isJavaLetterOrDigit($B)
+  message: isJavaLetterOrDigit is deprecated, autofix is provided as $A.isJavaIdentifierPart instead.
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/MET02-J.+Do+not+use+deprecated+or+obsolete+classes+or+methods
+  languages: [java]
+  severity: WARNING
+  fix: $A.isJavaIdentifierPart($B)

@@ -6,5 +6,8 @@ rules:
       - pattern: crypto.createCipheriv("RC4", ...)
       - pattern: crypto.createCipheriv("RC2", ...)
   message: These algorithms are insecure because they vulnerable to cryptanalysis and or have an inferior block size. Please consider using stronger algorithms.
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-5547
   languages: [js]
   severity: WARNING

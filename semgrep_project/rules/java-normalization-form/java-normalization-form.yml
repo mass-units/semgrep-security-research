@@ -1,0 +1,11 @@
+rules:
+- id: my_pattern_id
+  patterns:
+    - pattern: Normalizer.normalize(..., ...);
+    - pattern-not: Normalizer.normalize(..., Form.NFKC);
+  message: Make sure that this is the desired normalization form, refer to documentation for further explanation.
+  metadata:
+    references:
+      - http://www.unicode.org/reports/tr15/tr15-23.html
+  languages: [java]
+  severity: WARNING

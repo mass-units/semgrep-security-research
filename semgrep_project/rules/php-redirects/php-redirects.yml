@@ -1,0 +1,12 @@
+rules:
+- id: php-redirect
+  pattern: |
+      $U = $_METHOD['...'];
+      header("..." . $U);
+  message: Unsafe redirect from $U. User can edit after $_METHOD and change where redirect goes.
+  metadata:
+    references:
+      - https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html
+  languages: [php]
+  severity: ERROR
+  

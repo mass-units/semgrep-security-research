@@ -1,10 +1,13 @@
 rules:
-- id: my_pattern_id
+- id: java-throws-exceptions-and-throwables
   patterns:
     - pattern-either:
       - pattern: void $X() throws RuntimeException {...}
       - pattern: void $X() throws Exception {...}
       - pattern: void $X() throws Throwable {...}
-  message: Semgrep found a match
+  message: Methods must not throw RuntimeException, Exception, or Throwable. Handling these exceptions requires catching RuntimeException.
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/ERR07-J.+Do+not+throw+RuntimeException%2C+Exception%2C+or+Throwable
   languages: [java]
   severity: WARNING

@@ -4,5 +4,8 @@ rules:
     window.openDatabase
   message: |
       Web SQL is never meant to be used and isn't even supported by some major browsers
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-2817
   languages: [js]
   severity: WARNING

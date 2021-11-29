@@ -1,10 +1,15 @@
 rules:
-- id: my_pattern_id
+- id: java-catch-exceptions-and-throwables
   patterns:
     - pattern-either:
       - pattern: catch (Exception $X) {...}
       - pattern: catch (RuntimeException $X) {...}
       - pattern: catch (Throwable $X) {...}
-  message: Semgrep found a match
+  message: |
+    Programs must not catch RuntimeException, Exception, or Throwable. 
+    Handling the underlying null pointer dereference by catching the NullPointerException rather than fixing the underlying problem.
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/ERR08-J.+Do+not+catch+NullPointerException+or+any+of+its+ancestors
   languages: [java]
   severity: WARNING

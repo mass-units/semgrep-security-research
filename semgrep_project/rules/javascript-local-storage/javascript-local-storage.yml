@@ -3,6 +3,9 @@ rules:
   pattern: |
     localStorage
   message: |
-      Just a warning - make sure that sensitive data is not stored locally on the client side because it is not encrypted and other scripts could access the data 
+      Just a warning - make sure that sensitive data is not stored locally on the client side because it is not encrypted and other scripts could access the data
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-3271
   languages: [js]
   severity: WARNING

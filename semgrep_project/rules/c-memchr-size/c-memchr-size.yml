@@ -1,0 +1,21 @@
+rules:
+- id: c-memchr-size
+  patterns:
+    - pattern: |
+        $ARRAY $NAME[$SIZE];
+        initialize($NAME);
+        $VAR *$A = memchr($NAME, ..., ...);
+    - pattern-not: |
+        $ARRAY $NAME[$SIZE];
+        initialize($NAME);
+        $VAR *$A = memchr($NAME, ..., $SIZE);
+    - pattern-not: |
+        $ARRAY $NAME[$SIZE];
+        initialize($NAME);
+        $VAR *$A = memchr($NAME, ..., $SIZE);
+  message: Semgrep found a match
+  metadata:
+    references:
+      - https://www.cplusplus.com/reference/cstring/memchr/
+  languages: [c]
+  severity: ERROR

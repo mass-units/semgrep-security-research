@@ -1,0 +1,13 @@
+rules:
+- id: javascript-cross-origins-check-origin
+  patterns:
+    - pattern: $W.addEventListener("...", function($A) { ... $METHOD($A.data); ... });
+    - pattern-not: |
+        $W.addEventListener("...", function($A) { ... if($A.origin !== "...") return; ... $METHOD($A.data); ... });
+    - pattern-not: $W.addEventListener("...", function($A) { ... if($A.origin == "...") $METHOD($A.data); ... });
+  message: addEventListener without checking origin!
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-2819
+  languages: [js]
+  severity: ERROR

@@ -1,0 +1,20 @@
+rules:
+- id: javascript-execa
+  patterns:
+    - pattern-either:
+      - pattern: |
+          $X = "..." + $Y;
+          $Z = await execa.command($X);
+      - pattern: |
+          $X = "..." + $Y;
+          $Z = await execa.commandSync($X);
+      - pattern: |
+          $X = "..." + $Y;
+          $Z = await execa.node($X);
+  message: Execa accepting vars and then in the short hand form, seperate command and input to prevent injection. 
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-5883?search=OS%20commands 
+      - https://www.npmjs.com/package/execa
+  languages: [js]
+  severity: ERROR

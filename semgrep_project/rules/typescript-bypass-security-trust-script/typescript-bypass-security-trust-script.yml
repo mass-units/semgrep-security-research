@@ -1,0 +1,9 @@
+rules:
+- id: typescript-bypass-security-trust-script
+  pattern: $A.bypassSecurityTrustScript(...)
+  message: Semgrep found bypassSecurityTrustScript, which should be used cautiously because it bypasses sanitization.
+  metadata:
+      references:
+        - https://angular.io/api/platform-browser/DomSanitizer
+  languages: [ts]
+  severity: WARNING

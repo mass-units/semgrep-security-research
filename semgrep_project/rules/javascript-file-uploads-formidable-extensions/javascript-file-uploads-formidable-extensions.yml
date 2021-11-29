@@ -8,5 +8,8 @@ rules:
     $B.keepExtensions = true;
   message: |
       File uploads using formidable should have their extension-keeping option set to false. 
+  metadata:
+    references:
+      - https://rules.sonarsource.com/javascript/type/Vulnerability/RSPEC-2598
   languages: [js]
   severity: ERROR

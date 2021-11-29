@@ -1,0 +1,12 @@
+rules:
+- id: java-opensaml2-auth-bypass-static
+  pattern: |
+      StaticBasicParserPool $S = new StaticBasicParserPool();
+      ...
+      $S.setIgnoreComments(false);
+  message: Comments are not ignored during the parser, which means that an attacker could specially craft a SAMLResponse, and thus is vulnerable.
+  metadata:
+    references:
+      - https://rules.sonarsource.com/java/type/Vulnerability/RSPEC-5679
+  languages: [java]
+  severity: ERROR

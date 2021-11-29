@@ -1,0 +1,20 @@
+rules:
+- id: php-include-injections
+  patterns:
+    - pattern: |
+        $A = $METHOD["..."];
+        include $A . ".php";
+    - pattern-not: |
+        $A = $METHOD["..."];
+        if(in_array($A, ...))
+        {
+            ...
+            include $A . ".php";
+            ...
+        }
+  message: User provided data (payloads in this case) should always be considered untrusted and tainted. Mitigation is feasible with an allow-list.
+  metadata:
+    references:
+      - https://rules.sonarsource.com/php/type/Vulnerability/RSPEC-5335
+  languages: [php]
+  severity: ERROR

@@ -1,0 +1,24 @@
+rules:
+- id: java-invoke-waits-in-loops
+  patterns:
+    - pattern-either:
+      - pattern: |
+          if($A.isEmpty())
+          {
+            $A.wait();
+          }
+      - pattern: |
+          if($A.isEmpty())
+          {
+            $A.await();
+          }
+    - pattern-inside: |
+        synchronized($A) {
+          ...
+        }
+  message: Invoking waits outside of loops could cause hang ups, and is a bad practice. Use while() or for() loops.
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/THI03-J.+Always+invoke+wait%28%29+and+await%28%29+methods+inside+a+loop
+  languages: [java]
+  severity: WARNING

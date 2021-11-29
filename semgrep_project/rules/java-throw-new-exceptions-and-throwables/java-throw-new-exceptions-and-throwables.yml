@@ -5,6 +5,9 @@ rules:
       - pattern: throw new RuntimeException("...");
       - pattern: throw new Exception("...");
       - pattern: throw new Throwable("...");
-  message: Semgrep found a match
+  message: Methods must not throw RuntimeException, Exception, or Throwable. Handling these exceptions requires catching RuntimeException, which is not good by itself.
+  metadata:
+    references:
+      - https://wiki.sei.cmu.edu/confluence/display/java/ERR07-J.+Do+not+throw+RuntimeException%2C+Exception%2C+or+Throwable
   languages: [java]
   severity: WARNING
