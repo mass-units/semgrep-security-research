@@ -1,35 +1,28 @@
-rules:
-- id: java-zipslip
-  patterns:
-    - pattern: |
-        ZipEntry $A = $B.nextElement();
-        File $D = new File(..., $A.getName(), ...);
-        ...
-        $METHOD(..., $D, ...);
-    - pattern-not: |
-        ZipEntry $A = $B.nextElement();
-        File $D = new File(..., $A.getName(), ...);
-        ...
-        $CDP = $D.getCanonicalPath();
-        ...
-        if(!$CDP.startsWith($TD))
-        {
-          ...
-        }
-        $METHOD(..., $D, ...);
-    - pattern-not: |
-        ZipEntry $A = $B.nextElement();
-        File $D = new File(..., $A.getName(), ...);
-        ...
-        $CDP = $D.getCanonicalPath();
-        ...
-        if($CDP.startsWith($TD))
-        {
-          ...
-          $METHOD(..., $D, ...);
-          ...
-        }
-  message: Possible zip-slip vulnerability, use $D.getCanonicalPath to divert directory traversal.
-  languages: [java]
-  severity: WARNING
+class Main{
+  public void zip()
+  {
+       Enumeration<ZipEntry> entries = zip.getEntries();
+   while (entries.hasMoreElements()) {
+      ZipEntry e = entries.nextElement();
+      File f = new File(destinationDir, e.getName());
+      InputStream input = zip.getInputStream(e);
+      IOUtils.copy(input, write(f));
+  }
+  }
 
+  public void zip2()
+  {
+    Enumeration<ZipEntry> entries = zip.getEntries();
+    while (entries.hasMoreElements()) {
+       ZipEntry e = entries.nextElement();
+         String canonicalDestinationDirPath = destinationDir.getCanonicalPath();
+  File destinationfile = new File(destinationDir, e.getName());
+  String canonicalDestinationFile = destinationfile.getCanonicalPath();
+  if (!canonicalDestinationFile.startsWith(canonicalDestinationDirPath + File.separator)) {
+    throw new ArchiverException("Entry is outside of the target dir: " + e.getName());
+  }
+       InputStream input = zip.getInputStream(e);
+       IOUtils.copy(input, write(f));
+  }
+}
+}
