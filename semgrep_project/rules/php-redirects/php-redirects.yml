@@ -1,7 +1,8 @@
 rules:
-- id: php-redirect
+- id: php-redirects
   pattern: |
       $U = $_METHOD['...'];
+      ...
       header("..." . $U);
   message: Unsafe redirect from $U. User can edit after $_METHOD and change where redirect goes.
   metadata:
